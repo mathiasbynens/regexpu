@@ -1,0 +1,68 @@
+{
+	"name": "regexpu",
+	"version": "0.0.0",
+	"description": "A source code transpiler that enables the use of ES6 Unicode regular expressions in ES5.",
+	"homepage": "http://mths.be/regexpu",
+	"main": "regexpu.js",
+	"bin": "bin/regexpu",
+	"keywords": [
+		"codegen",
+		"desugaring",
+		"ecmascript",
+		"es5",
+		"es6",
+		"harmony",
+		"javascript",
+		"refactoring",
+		"regex",
+		"regexp",
+		"regular expressions",
+		"rewriting",
+		"syntax",
+		"transformation",
+		"transpile",
+		"transpiler",
+		"unicode"
+	],
+	"license": "MIT",
+	"author": {
+		"name": "Mathias Bynens",
+		"url": "https://mathiasbynens.be/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mathiasbynens/regexpu.git"
+	},
+	"bugs": "https://github.com/mathiasbynens/regexpu/issues",
+	"files": [
+		"LICENSE-MIT.txt",
+		"regexpu.js",
+		"src/",
+		"data/character-class-escape-sets.js",
+		"data/iu-mappings.json",
+		"bin/",
+		"man/"
+	],
+	"directories": {
+		"bin": "bin",
+		"man": "man"
+	},
+	"scripts": {
+		"build": "node scripts/iu-mappings.js && node scripts/character-class-escape-sets.js",
+		"test": "mocha tests",
+		"coverage": "istanbul cover --report html node_modules/.bin/_mocha tests/tests.js -- -u exports -R spec"
+	},
+	"dependencies": {
+		"esprima": "git+https://github.com/mathiasbynens/esprima-es6-regexp.git",
+		"recast": "^0.7.0",
+		"regenerate": "^0.6.4",
+		"regjsgen": "^0.1.2",
+		"regjsparser": "^0.1.0"
+	},
+	"devDependencies": {
+		"jsesc": "^0.5.0",
+		"lodash": "^2.4.1",
+		"mocha": "^1.21.4",
+		"unicode-7.0.0": "^0.1.5"
+	}
+}
