@@ -4,4 +4,4 @@ node_js:
 script:
   - "npm run build && npm test"
 after_script:
-  - "istanbul cover --verbose --dir coverage tests/tests.js && cat coverage/lcov.info | coveralls; rm -rf coverage/lcov*"
+  - "istanbul cover --verbose --dir coverage node_modules/.bin/_mocha tests/tests.js -- -u exports -R spec && cat coverage/lcov.info | coveralls; rm -rf coverage/lcov*"
