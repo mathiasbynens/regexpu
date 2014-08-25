@@ -63,7 +63,21 @@ addCharacterClassEscape(
 );
 addCharacterClassEscape(
 	's', // `\s` and `\S`
-	regenerate(0x0009, 0x000B, 0x000C, 0x0020, 0x00A0, 0xFEFF, Zs)
+	regenerate(
+		// http://mths.be/es6#sec-white-space
+		0x0009,
+		0x000B,
+		0x000C,
+		0x0020,
+		0x00A0,
+		0xFEFF,
+		Zs,
+		// http://mths.be/es6#sec-line-terminators
+		0x000A,
+		0x000D,
+		0x2028,
+		0x2029
+	)
 );
 addCharacterClassEscape(
 	'w', // `\w` and `\W`
