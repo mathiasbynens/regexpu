@@ -19,6 +19,7 @@ function caseFold(codePoint) {
 // character classes (if any).
 var UNICODE_SET = regenerate().addRange(0x0, 0x10FFFF);
 // Without the `u` flag, the range stops at 0xFFFF.
+// http://mths.be/es6#sec-pattern-semantics
 var BMP_SET = regenerate().addRange(0x0, 0xFFFF);
 
 var ESCAPE_CHARS = {};

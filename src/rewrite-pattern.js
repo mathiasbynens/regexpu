@@ -24,6 +24,7 @@ function has(object, property) {
 // character classes (if any).
 var UNICODE_SET = regenerate().addRange(0x0, 0x10FFFF);
 // Without the `u` flag, the range stops at 0xFFFF.
+// http://mths.be/es6#sec-pattern-semantics
 var BMP_SET = regenerate().addRange(0x0, 0xFFFF);
 
 // Prepare a Regenerate set containing all code points that are supposed to be

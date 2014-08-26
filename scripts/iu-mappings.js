@@ -99,7 +99,7 @@ writeJSON('data/simple-case-folding-mappings.json', oneWayMappings);
 // does not map, for example, `ß` (U+00DF) to `SS`. It may however map a code
 // point outside the Basic Latin range to a character within, for example, `ſ`
 // (U+017F) to `s`. Such characters are not mapped if Unicode is `false`.
-// This prevents Unicode code points such as U+0131 and U+017F from matching
+// This prevents Unicode code points such as U+017F and U+212A from matching
 // regular expressions such as `/[a‑z]/i`, but they will match `/[a‑z]/ui`.
 // http://mths.be/es6#sec-runtime-semantics-canonicalize-abstract-operation
 // Get the mappings that are unique to regular expressions that have both the
