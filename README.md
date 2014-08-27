@@ -138,7 +138,7 @@ These properties must be provided if you want to generate source maps.
 ```js
 var result = regexpu.transpileCode(code, {
   'sourceFileName': 'es6.js',
-  'sourceMapName': 'es6.map',
+  'sourceMapName': 'es6.js.map',
 });
 console.log(result.code); // transpiled source code
 console.log(result.map); // source map
