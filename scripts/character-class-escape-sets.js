@@ -19,7 +19,7 @@ function caseFold(codePoint) {
 // character classes (if any).
 var UNICODE_SET = regenerate().addRange(0x0, 0x10FFFF);
 // Without the `u` flag, the range stops at 0xFFFF.
-// http://mths.be/es6#sec-pattern-semantics
+// https://mths.be/es6#sec-pattern-semantics
 var BMP_SET = regenerate().addRange(0x0, 0xFFFF);
 
 var ESCAPE_CHARS = {};
@@ -57,7 +57,7 @@ function addCharacterClassEscape(lower, set) {
 }
 
 // Prepare a Regenerate set for every existing character class escape.
-// http://mths.be/es6#sec-characterclassescape
+// https://mths.be/es6#sec-characterclassescape
 addCharacterClassEscape(
 	'd', // `\d` and `\D`
 	regenerate().addRange('0', '9')
@@ -65,7 +65,7 @@ addCharacterClassEscape(
 addCharacterClassEscape(
 	's', // `\s` and `\S`
 	regenerate(
-		// http://mths.be/es6#sec-white-space
+		// https://mths.be/es6#sec-white-space
 		0x0009,
 		0x000B,
 		0x000C,
@@ -73,7 +73,7 @@ addCharacterClassEscape(
 		0x00A0,
 		0xFEFF,
 		Zs,
-		// http://mths.be/es6#sec-line-terminators
+		// https://mths.be/es6#sec-line-terminators
 		0x000A,
 		0x000D,
 		0x2028,

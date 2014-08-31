@@ -101,7 +101,7 @@ writeJSON('data/simple-case-folding-mappings.json', oneWayMappings);
 // (U+017F) to `s`. Such characters are not mapped if Unicode is `false`.
 // This prevents Unicode code points such as U+017F and U+212A from matching
 // regular expressions such as `/[a‑z]/i`, but they will match `/[a‑z]/ui`.
-// http://mths.be/es6#sec-runtime-semantics-canonicalize-abstract-operation
+// https://mths.be/es6#sec-runtime-semantics-canonicalize-abstract-operation
 // Get the mappings that are unique to regular expressions that have both the
 // `i` and `u` flags set. In addition to the above, this includes all mappings
 // for astral code points.
@@ -131,7 +131,7 @@ _.forEach(oneWayMappings, function(to, from) {
 		// Include astral code points.
 		(from > 0xFFFF || to > 0xFFFF) ||
 		// Exclude ES5 mappings as per the above comment.
-		// http://mths.be/es6#sec-runtime-semantics-canonicalize-abstract-operation
+		// https://mths.be/es6#sec-runtime-semantics-canonicalize-abstract-operation
 		(from >= 0x80 && to < 0x80)
 	) {
 		extend(filteredMappings, from, to);

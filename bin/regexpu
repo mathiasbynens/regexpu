@@ -17,7 +17,7 @@
 
 		if (/^(?:-h|--help|undefined)$/.test(option)) {
 			log(
-				'regexpu v%s - http://mths.be/regexpu',
+				'regexpu v%s - https://mths.be/regexpu',
 				regexpu.version
 			);
 			log([

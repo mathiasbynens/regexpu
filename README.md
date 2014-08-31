@@ -1,6 +1,6 @@
 # regexpu [![Build status](https://travis-ci.org/mathiasbynens/regexpu.svg?branch=master)](https://travis-ci.org/mathiasbynens/regexpu) [![Code coverage status](http://img.shields.io/coveralls/mathiasbynens/regexpu/master.svg)](https://coveralls.io/r/mathiasbynens/regexpu) [![Dependency status](https://gemnasium.com/mathiasbynens/regexpu.svg)](https://gemnasium.com/mathiasbynens/regexpu)
 
-_regexpu_ is a source code transpiler that enables the use of ES6 Unicode regular expressions in JavaScript-of-today (ES5). It rewrites regular expressions that make use of [the ES6 `u` flag](https://mathiasbynens.be/notes/es6-unicode-regex) into equivalent ES5-compatible regular expressions. [Here’s an online demo.](http://mothereff.in/regexpu)
+_regexpu_ is a source code transpiler that enables the use of ES6 Unicode regular expressions in JavaScript-of-today (ES5). It rewrites regular expressions that make use of [the ES6 `u` flag](https://mathiasbynens.be/notes/es6-unicode-regex) into equivalent ES5-compatible regular expressions. [Here’s an online demo.](https://mothereff.in/regexpu)
 
 ## Example
 
@@ -55,7 +55,7 @@ console.log([
 ## Known limitations
 
 1. _regexpu_ only transpiles regular expression _literals_, so things like `RegExp('…', 'u')` are not affected.
-2. It doesn’t polyfill [the `RegExp.prototype.unicode` getter](http://mths.be/es6#sec-get-regexp.prototype.unicode) because it’s not possible to do so without side effects.
+2. It doesn’t polyfill [the `RegExp.prototype.unicode` getter](https://mths.be/es6#sec-get-regexp.prototype.unicode) because it’s not possible to do so without side effects.
 
 ## Installation
 
@@ -152,4 +152,4 @@ console.log(result.map); // source map
 
 ## License
 
-_regexpu_ is available under the [MIT](http://mths.be/mit) license.
+_regexpu_ is available under the [MIT](https://mths.be/mit) license.

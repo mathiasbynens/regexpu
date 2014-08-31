@@ -24,14 +24,14 @@ function has(object, property) {
 // character classes (if any).
 var UNICODE_SET = regenerate().addRange(0x0, 0x10FFFF);
 // Without the `u` flag, the range stops at 0xFFFF.
-// http://mths.be/es6#sec-pattern-semantics
+// https://mths.be/es6#sec-pattern-semantics
 var BMP_SET = regenerate().addRange(0x0, 0xFFFF);
 
 // Prepare a Regenerate set containing all code points that are supposed to be
-// matched by `/./u`. http://mths.be/es6#sec-atom
+// matched by `/./u`. https://mths.be/es6#sec-atom
 var DOT_SET_UNICODE = UNICODE_SET.clone() // all Unicode code points
 	.remove(
-		// minus `LineTerminator`s (http://mths.be/es6#sec-line-terminators):
+		// minus `LineTerminator`s (https://mths.be/es6#sec-line-terminators):
 		0x000A, // Line Feed <LF>
 		0x000D, // Carriage Return <CR>
 		0x2028, // Line Separator <LS>
