@@ -214,6 +214,11 @@ var fixtures = [
 		'pattern': '\uD834\uDF06{2,4}',
 		'flags': FLAGS_WITH_UNICODE,
 		'transpiled': '(?:\\uD834\\uDF06){2,4}'
+	},
+	{
+		'pattern': '(a)\\1',
+		'flags': FLAGS_WITH_UNICODE_WITHOUT_I,
+		'transpiled': '(a)\\1'
 	}
 ];
 

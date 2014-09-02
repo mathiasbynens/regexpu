@@ -56,8 +56,8 @@
 		"esprima": "git+https://github.com/mathiasbynens/esprima-es6-regexp.git",
 		"recast": "^0.7.0",
 		"regenerate": "^0.6.4",
-		"regjsgen": "^0.1.2",
-		"regjsparser": "^0.1.0"
+		"regjsgen": "^0.2.0",
+		"regjsparser": "^0.1.2"
 	},
 	"devDependencies": {
 		"coveralls": "^2.11.1",

@@ -169,7 +169,7 @@ function processTerm(item) {
 		case 'anchor':
 		case 'empty':
 		case 'group':
-		case 'ref':
+		case 'reference':
 			// Nothing to do here.
 			break;
 		// The `default` clause is only here as a safeguard; it should never be
