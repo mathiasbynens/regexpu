@@ -37,7 +37,9 @@
 	"files": [
 		"LICENSE-MIT.txt",
 		"regexpu.js",
-		"src/",
+		"rewrite-pattern.js",
+		"transform-tree.js",
+		"transpile-code.js",
 		"data/character-class-escape-sets.js",
 		"data/iu-mappings.json",
 		"bin/",
