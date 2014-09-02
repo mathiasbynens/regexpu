@@ -222,6 +222,14 @@ var fixtures = [
 	}
 ];
 
+describe('API', function() {
+	it('supports loading each API method separately', function() {
+		assert.equal(regexpu.rewritePattern, require('../rewrite-pattern'));
+		assert.equal(regexpu.transformTree, require('../transform-tree'));
+		assert.equal(regexpu.transpileCode, require('../transpile-code'));
+	});
+});
+
 describe('regexpu.rewritePattern', function() {
 
 	fixtures.forEach(function(fixture) {

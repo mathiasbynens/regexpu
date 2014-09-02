@@ -105,6 +105,14 @@ regexpu.rewritePattern('foo.bar', 'u');
 // → 'foo(?:[\\0-\\t\\x0B\\f\\x0E-\\u2027\\u202A-\\uD7FF\\uDC00-\\uFFFF]|[\\uD800-\\uDBFF][\\uDC00-\\uDFFF]|[\\uD800-\\uDBFF])bar'
 ```
 
+`regexpu.rewritePattern` uses [regjsgen](https://github.com/d10/regjsgen), [regjsparser](https://github.com/jviereck/regjsparser), and [regenerate](https://github.com/mathiasbynens/regenerate) as internal dependencies. If you only need this function in your program, it’s better to include it directly:
+
+```js
+var rewritePattern = require('regexpu/rewrite-pattern');
+```
+
+This prevents the [Recast](https://github.com/benjamn/recast) and [Esprima](https://github.com/ariya/esprima) dependencies from being loaded into memory.
+
 ### `regexpu.transformTree(ast)`
 
 This function accepts an abstract syntax tree representing some JavaScript code, and returns a transformed version of the tree in which any regular expression literals that use the ES6 `u` flag are rewritten in ES5.
@@ -118,6 +126,14 @@ var result = recast.print(tree);
 console.log(result.code); // transpiled ES5 code
 console.log(result.map); // source map
 ```
+
+`regexpu.transformTree` uses [Recast](https://github.com/benjamn/recast), [regjsgen](https://github.com/d10/regjsgen), [regjsparser](https://github.com/jviereck/regjsparser), and [regenerate](https://github.com/mathiasbynens/regenerate) as internal dependencies. If you only need this function in your program, it’s better to include it directly:
+
+```js
+var transformTree = require('regexpu/transform-tree');
+```
+
+This prevents the [Esprima](https://github.com/ariya/esprima) dependency from being loaded into memory.
 
 ### `regexpu.transpileCode(code, options)`
 
@@ -143,6 +159,12 @@ var result = regexpu.transpileCode(code, {
 });
 console.log(result.code); // transpiled source code
 console.log(result.map); // source map
+```
+
+`regexpu.transpileCode` uses [Esprima](https://github.com/ariya/esprima), [Recast](https://github.com/benjamn/recast), [regjsgen](https://github.com/d10/regjsgen), [regjsparser](https://github.com/jviereck/regjsparser), and [regenerate](https://github.com/mathiasbynens/regenerate) as internal dependencies. If you only need this function in your program, feel free to include it directly:
+
+```js
+var transpileCode = require('regexpu/transpile-code');
 ```
 
 ## Author

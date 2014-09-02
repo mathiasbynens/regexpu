@@ -1,8 +1,8 @@
 var generate = require('regjsgen').generate;
 var parse = require('regjsparser').parse;
 var regenerate = require('regenerate');
-var iuMappings = require('../data/iu-mappings.json');
-var ESCAPE_SETS = require('../data/character-class-escape-sets.js');
+var iuMappings = require('./data/iu-mappings.json');
+var ESCAPE_SETS = require('./data/character-class-escape-sets.js');
 
 function getCharacterClassEscapeSet(character) {
 	if (unicode) {
