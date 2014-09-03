@@ -9,20 +9,19 @@ var visitor = types.PathVisitor.fromMethodsObject({
 
 		// Once https://github.com/ariya/esprima/pull/264 lands, we’ll be able to
 		// use the `regex` property here instead.
-		var match = node.raw.match(/^\/(.+)\/([gimuy]*)$/);
-		if (match) {
-			var pattern = match[1];
-			var flags = match[2];
-			if (flags.indexOf('u') != -1) {
-				var result = '/' + rewritePattern(pattern, flags) + '/' +
-					flags.replace('u', '');
-				node.raw = result;
-				node.value = {
-					'toString': function() {
-						return result;
-					}
-				};
-			}
+		var value = node.raw;
+		var lastIndex = value.lastIndexOf('/');
+		var pattern = value.slice(1, lastIndex);
+		var flags = value.slice(lastIndex + 1);
+		if (flags.indexOf('u') != -1) {
+			var result = '/' + rewritePattern(pattern, flags) + '/' +
+				flags.replace('u', '');
+			node.raw = result;
+			node.value = {
+				'toString': function() {
+					return result;
+				}
+			};
 		}
 
 		// Return `false` to indicate that the traversal need not continue any
