@@ -56,14 +56,14 @@
 	},
 	"dependencies": {
 		"esprima": "git+https://github.com/mathiasbynens/esprima-es6-regexp.git",
-		"recast": "^0.7.0",
-		"regenerate": "^0.6.4",
+		"recast": "^0.7.2",
+		"regenerate": "^1.0.0",
 		"regjsgen": "^0.2.0",
 		"regjsparser": "^0.1.2"
 	},
 	"devDependencies": {
 		"coveralls": "^2.11.1",
-		"istanbul": "^0.3.0",
+		"istanbul": "^0.3.2",
 		"jsesc": "^0.5.0",
 		"lodash": "^2.4.1",
 		"mocha": "^1.21.4",
