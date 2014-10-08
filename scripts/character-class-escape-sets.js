@@ -1,7 +1,11 @@
 var fs = require('fs');
 var jsesc = require('jsesc');
 var regenerate = require('regenerate');
-var Zs = require('unicode-7.0.0/categories/Zs/code-points.js');
+
+// https://github.com/mathiasbynens/regexpu/issues/7
+var Zs = require('unicode-5.1.0/categories/Zs/code-points.js');
+var latestZs = require('unicode-7.0.0/categories/Zs/code-points.js');
+
 var iuMappings = require('../data/iu-mappings.json');
 var oneWayMappings = require('../data/simple-case-folding-mappings.json');
 
@@ -73,6 +77,7 @@ addCharacterClassEscape(
 		0x00A0,
 		0xFEFF,
 		Zs,
+		latestZs,
 		// https://mths.be/es6#sec-line-terminators
 		0x000A,
 		0x000D,
