@@ -1,6 +1,6 @@
 {
 	"name": "regexpu",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "A source code transpiler that enables the use of ES6 Unicode regular expressions in ES5.",
 	"homepage": "https://mths.be/regexpu",
 	"main": "regexpu.js",
@@ -56,7 +56,7 @@
 	},
 	"dependencies": {
 		"esprima": "git+https://github.com/mathiasbynens/esprima-es6-regexp.git",
-		"recast": "^0.7.2",
+		"recast": "^0.7.4",
 		"regenerate": "^1.0.0",
 		"regjsgen": "^0.2.0",
 		"regjsparser": "^0.1.2"
