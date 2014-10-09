@@ -1,6 +1,6 @@
 {
 	"name": "regexpu",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"description": "A source code transpiler that enables the use of ES6 Unicode regular expressions in ES5.",
 	"homepage": "https://mths.be/regexpu",
 	"main": "regexpu.js",
@@ -61,7 +61,7 @@
 		"regjsparser": "^0.1.2"
 	},
 	"devDependencies": {
-		"coveralls": "^2.11.1",
+		"coveralls": "^2.11.2",
 		"istanbul": "^0.3.2",
 		"jsesc": "^0.5.0",
 		"lodash": "^2.4.1",
