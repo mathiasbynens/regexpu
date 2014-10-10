@@ -171,6 +171,13 @@ console.log(result.map); // source map
 var transpileCode = require('regexpu/transpile-code');
 ```
 
+## Transpilers that use regexpu internally
+
+If you’re looking for a general-purpose ES.next-to-ES5 transpiler with support for Unicode regular expressions, consider using one of these:
+
+* [Traceur](https://github.com/google/traceur-compiler) v0.0.61+
+* [6to5](https://github.com/sebmck/6to5) v1.5.0+
+
 ## Author
 
 | [![twitter/mathias](https://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](https://twitter.com/mathias "Follow @mathias on Twitter") |
