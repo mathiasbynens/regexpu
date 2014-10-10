@@ -7,22 +7,28 @@ var visitor = types.PathVisitor.fromMethodsObject({
 	'visitLiteral': function(path) {
 		var node = path.value;
 
-		// Once https://github.com/ariya/esprima/pull/264 lands, we’ll be able to
-		// use the `regex` property here instead.
-		var value = node.raw;
-		var lastIndex = value.lastIndexOf('/');
-		var pattern = value.slice(1, lastIndex);
-		var flags = value.slice(lastIndex + 1);
-		if (flags.indexOf('u') != -1) {
-			var result = '/' + rewritePattern(pattern, flags) + '/' +
-				flags.replace('u', '');
-			node.raw = result;
-			node.value = {
-				'toString': function() {
-					return result;
-				}
-			};
+		if (!node.regex) {
+			return false;
 		}
+
+		var flags = node.regex.flags;
+		if (flags.indexOf('u') == -1) {
+			return false;
+		}
+
+		var newPattern = rewritePattern(node.regex.pattern, flags);
+		var newFlags = flags.replace('u', '');
+		var result = '/' + newPattern + '/' + newFlags;
+		node.regex = {
+			'pattern': newPattern,
+			'flags': newFlags
+		}
+		node.raw = result;
+		node.value = {
+			'toString': function() {
+				return result;
+			}
+		};
 
 		// Return `false` to indicate that the traversal need not continue any
 		// further down this subtree. (`Literal`s don’t have descendants anyway.)

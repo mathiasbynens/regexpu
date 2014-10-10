@@ -290,6 +290,14 @@ describe('regexpu.transpileCode', function() {
 	it('doesn’t transpile anything else', function() {
 		assert.equal(regexpu.transpileCode('var x = /a/;'), 'var x = /a/;');
 		assert.equal(regexpu.transpileCode('var x = 42;'), 'var x = 42;');
+		assert.equal(regexpu.transpileCode('var x = "abc";'), 'var x = "abc";');
+		assert.equal(regexpu.transpileCode('var x = "a/b/u";'), 'var x = "a/b/u";');
+		assert.equal(regexpu.transpileCode('var x = true;'), 'var x = true;');
+		assert.equal(regexpu.transpileCode('var x = false;'), 'var x = false;');
+		assert.equal(regexpu.transpileCode('var x = undefined;'), 'var x = undefined;');
+		assert.equal(regexpu.transpileCode('var x = null;'), 'var x = null;');
+		assert.equal(regexpu.transpileCode('var x = [];'), 'var x = [];');
+		assert.equal(regexpu.transpileCode('var x = {};'), 'var x = {};');
 	});
 
 });
