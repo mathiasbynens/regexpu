@@ -4,3 +4,5 @@ module.exports = {
 	'transpileCode': require('./transpile-code.js'),
 	'version': require('./package.json').version
 };
+
+module.exports.transform = module.exports.transformTree;

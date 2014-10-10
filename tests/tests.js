@@ -243,10 +243,14 @@ describe('regexpu.rewritePattern', function() {
 
 });
 
-xdescribe('regexpu.transformTree', function() {
+describe('regexpu.transformTree', function() {
 
-	// TODO
-	// For now, `transformTree` is tested indirectly through `transpileCode`.
+	it('is aliased as `regexpu.transform`', function() {
+		assert.equal(regexpu.transform, regexpu.transformTree);
+	});
+
+	// Functional tests have been omitted here, because `transformTree` is
+	// already tested indirectly through `transpileCode`.
 
 });
 

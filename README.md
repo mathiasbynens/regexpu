@@ -117,7 +117,7 @@ var rewritePattern = require('regexpu/rewrite-pattern');
 
 This prevents the [Recast](https://github.com/benjamn/recast) and [Esprima](https://github.com/ariya/esprima) dependencies from being loaded into memory.
 
-### `regexpu.transformTree(ast)`
+### `regexpu.transformTree(ast)` or its alias `regexpu.transform(ast)`
 
 This function accepts an abstract syntax tree representing some JavaScript code, and returns a transformed version of the tree in which any regular expression literals that use the ES6 `u` flag are rewritten in ES5.
 
