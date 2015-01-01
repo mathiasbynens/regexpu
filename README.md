@@ -64,7 +64,7 @@ console.log([
 
 ## Installation
 
-To use _regexpu_ programmatically, install it as a dependency via [npm](http://npmjs.org/):
+To use _regexpu_ programmatically, install it as a dependency via [npm](https://www.npmjs.org/):
 
 ```bash
 npm install regexpu --save-dev

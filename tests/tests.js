@@ -111,6 +111,12 @@ var fixtures = [
 		'flags': FLAGS_WITH_UNICODE_WITHOUT_I,
 		'transpiled': '(?:[a-z]|\\uD834[\\uDF06-\\uDF08])'
 	},
+	// https://github.com/mathiasbynens/regexpu/issues/12
+	// {
+	// 	'pattern': '[\\u{0000000000001D306}-\\u{000000000000000000000001D308}a-z]',
+	// 	'flags': FLAGS_WITH_UNICODE_WITHOUT_I,
+	// 	'transpiled': '(?:[a-z]|\\uD834[\\uDF06-\\uDF08])'
+	// },
 	{
 		'pattern': '[\\u{1D306}-\\u{1D308}a-z]+',
 		'flags': FLAGS_WITH_UNICODE_WITHOUT_I,
