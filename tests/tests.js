@@ -187,11 +187,6 @@ var fixtures = [
 		'transpiled': '^(?:ab|cd)$'
 	},
 	{
-		'pattern': '\uD834\uDF06+',
-		'flags': FLAGS_WITHOUT_UNICODE,
-		'transpiled': '\\uD834\\uDF06+'
-	},
-	{
 		// Without the `u` flag, the character class contains two entries: one for
 		// each surrogate half.
 		'pattern': '[\uD834\uDF06]',
@@ -207,8 +202,29 @@ var fixtures = [
 	},
 	{
 		'pattern': '\uD834\uDF06+',
+		'flags': FLAGS_WITHOUT_UNICODE,
+		'transpiled': '\\uD834\\uDF06+'
+	},
+	{
+		'pattern': '\uD834\uDF06+',
 		'flags': FLAGS_WITH_UNICODE,
 		'transpiled': '(?:\\uD834\\uDF06)+'
+	},
+	{
+		'pattern': '\\uD834\\uDF06+',
+		'flags': FLAGS_WITHOUT_UNICODE,
+		'transpiled': '\\uD834\\uDF06+'
+	},
+	{
+		'pattern': '\\uD834\\uDF06+',
+		'flags': FLAGS_WITH_UNICODE,
+		'transpiled': '(?:\\uD834\\uDF06)+'
+	},
+	{
+		// https://bugs.ecmascript.org/show_bug.cgi?id=3521#c3
+		'pattern': '\\u{D834}\\u{DF06}+',
+		'flags': FLAGS_WITH_UNICODE,
+		'transpiled': '\\uD834\\uDF06+'
 	},
 	{
 		'pattern': '\uD834\uDF06{2,4}',
@@ -217,6 +233,16 @@ var fixtures = [
 	},
 	{
 		'pattern': '\uD834\uDF06{2,4}',
+		'flags': FLAGS_WITH_UNICODE,
+		'transpiled': '(?:\\uD834\\uDF06){2,4}'
+	},
+	{
+		'pattern': '\\uD834\\uDF06{2,4}',
+		'flags': FLAGS_WITHOUT_UNICODE,
+		'transpiled': '\\uD834\\uDF06{2,4}'
+	},
+	{
+		'pattern': '\\uD834\\uDF06{2,4}',
 		'flags': FLAGS_WITH_UNICODE,
 		'transpiled': '(?:\\uD834\\uDF06){2,4}'
 	},
