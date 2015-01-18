@@ -55,7 +55,7 @@
 		"coverage": "istanbul cover --report html node_modules/.bin/_mocha tests/tests.js -- -u exports -R spec"
 	},
 	"dependencies": {
-		"recast": "^0.9.13",
+		"recast": "^0.9.15",
 		"regenerate": "^1.0.0",
 		"regjsgen": "^0.2.0",
 		"regjsparser": "^0.1.3"
