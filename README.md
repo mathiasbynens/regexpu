@@ -61,6 +61,7 @@ console.log([
 1. _regexpu_ only transpiles regular expression _literals_, so things like `RegExp('…', 'u')` are not affected.
 2. _regexpu_ doesn’t polyfill [the `RegExp.prototype.unicode` getter](https://mths.be/es6#sec-get-regexp.prototype.unicode) because it’s not possible to do so without side effects.
 3. _regexpu_ doesn’t support [canonicalizing the contents of back-references in regular expressions with both the `i` and `u` flag set](https://github.com/mathiasbynens/regexpu/issues/4), since that would require transpiling/wrapping strings.
+4. _regexpu_ [doesn’t match lone low surrogates accurately](https://github.com/mathiasbynens/regexpu/issues/17). Unfortunately that is impossible to implement due to the lack of lookbehind support in JavaScript regular expressions.
 
 ## Installation
 
