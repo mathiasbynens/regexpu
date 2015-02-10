@@ -64,6 +64,9 @@ function assign(target, source) {
 
 function update(item, pattern) {
 	// TODO: Test if memoizing `pattern` here is worth the effort.
+	if (!pattern) {
+		return;
+	}
 	var tree = parse(pattern, '');
 	switch (tree.type) {
 		case 'characterClass':

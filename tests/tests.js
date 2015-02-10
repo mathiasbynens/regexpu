@@ -250,6 +250,11 @@ var fixtures = [
 		'pattern': '(a)\\1',
 		'flags': FLAGS_WITH_UNICODE_WITHOUT_I,
 		'transpiled': '(a)\\1'
+	},
+	{
+		'pattern': '[]',
+		'flags': FLAGS,
+		'transpiled': '[]'
 	}
 ];
 
