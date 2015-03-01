@@ -252,9 +252,16 @@ var fixtures = [
 		'transpiled': '(a)\\1'
 	},
 	{
+		// https://github.com/mathiasbynens/regexpu/issues/18
 		'pattern': '[]',
 		'flags': FLAGS,
 		'transpiled': '[]'
+	},
+	{
+		// https://github.com/mathiasbynens/regexpu/issues/19
+		'pattern': '(\\1)+\\1\\1',
+		'flags': FLAGS,
+		'transpiled': '(\\1)+\\1\\1'
 	}
 ];
 
