@@ -107,6 +107,11 @@ var fixtures = [
 		'transpiled': '(?:[a-z]|\\uD834[\\uDF06-\\uDF08])'
 	},
 	{
+		'pattern': '[\\uD834\\uDF06-\\uD834\\uDF08a-z]',
+		'flags': FLAGS_WITH_UNICODE_WITHOUT_I,
+		'transpiled': '(?:[a-z]|\\uD834[\\uDF06-\\uDF08])'
+	},
+	{
 		'pattern': '[\\u{1D306}-\\u{1D308}a-z]',
 		'flags': FLAGS_WITH_UNICODE_WITHOUT_I,
 		'transpiled': '(?:[a-z]|\\uD834[\\uDF06-\\uDF08])'
