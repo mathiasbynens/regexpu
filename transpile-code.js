@@ -1,3 +1,4 @@
+var esprima = require('esprima');
 var recast = require('recast');
 var transform = require('./transform-tree.js');
 
@@ -7,6 +8,7 @@ module.exports = function(input, options) {
 	var sourceMapName = options.sourceMapName || '';
 	var createSourceMap = sourceFileName && sourceMapName;
 	var tree = recast.parse(input, {
+		'esprima': esprima,
 		'sourceFileName': sourceFileName
 	});
 	tree = transform(tree);
