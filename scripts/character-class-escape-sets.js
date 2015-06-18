@@ -4,7 +4,7 @@ var regenerate = require('regenerate');
 
 // https://github.com/mathiasbynens/regexpu/issues/7
 var Zs = require('unicode-5.1.0/categories/Zs/code-points.js');
-var latestZs = require('unicode-7.0.0/categories/Zs/code-points.js');
+var latestZs = require('unicode-8.0.0/categories/Zs/code-points.js');
 
 var iuMappings = require('../data/iu-mappings.json');
 var oneWayMappings = require('../data/simple-case-folding-mappings.json');
