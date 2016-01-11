@@ -55,7 +55,7 @@
 		"coverage": "istanbul cover --report html node_modules/.bin/_mocha tests/tests.js -- -u exports -R spec"
 	},
 	"dependencies": {
-		"esprima": "^2.6.0",
+		"esprima": "^2.7.1",
 		"recast": "^0.10.10",
 		"regenerate": "^1.2.1",
 		"regexpu-core": "^1.0.0",
