@@ -85,35 +85,16 @@ A string representing the semantic version number.
 
 ### `regexpu.rewritePattern(pattern, flags)`
 
-This function takes a string that represents a regular expression pattern as well as a string representing its flags, and returns an ES5-compatible version of the pattern.
-
-```js
-regexpu.rewritePattern('foo.bar', 'u');
-// → 'foo(?:[\\0-\\t\\x0B\\f\\x0E-\\u2027\\u202A-\\uD7FF\\uDC00-\\uFFFF]|[\\uD800-\\uDBFF][\\uDC00-\\uDFFF]|[\\uD800-\\uDBFF])bar'
-
-regexpu.rewritePattern('[\\u{1D306}-\\u{1D308}a-z]', 'u');
-// → '(?:[a-z]|\\uD834[\\uDF06-\\uDF08])'
-
-regexpu.rewritePattern('[\\u{1D306}-\\u{1D308}a-z]', 'ui');
-// → '(?:[a-z\\u017F\\u212A]|\\uD834[\\uDF06-\\uDF08])'
-```
-
-_regexpu_ can rewrite non-ES6 regular expressions too, which is useful to demonstrate how their behavior changes once the `u` and `i` flags are added:
-
-```js
-// In ES5, the dot operator only matches BMP symbols:
-regexpu.rewritePattern('foo.bar');
-// → 'foo(?:[\\0-\\t\\x0B\\f\\x0E-\\u2027\\u202A-\\uFFFF])bar'
-
-// But with the ES6 `u` flag, it matches astral symbols too:
-regexpu.rewritePattern('foo.bar', 'u');
-// → 'foo(?:[\\0-\\t\\x0B\\f\\x0E-\\u2027\\u202A-\\uD7FF\\uDC00-\\uFFFF]|[\\uD800-\\uDBFF][\\uDC00-\\uDFFF]|[\\uD800-\\uDBFF])bar'
-```
+This is an alias for the `rewritePattern` function exported by [_regexpu-core_](https://github.com/mathiasbynens/regexpu-core). Please refer to that project’s documentation for more information.
 
 `regexpu.rewritePattern` uses [regjsgen](https://github.com/d10/regjsgen), [regjsparser](https://github.com/jviereck/regjsparser), and [regenerate](https://github.com/mathiasbynens/regenerate) as internal dependencies. If you only need this function in your program, it’s better to include it directly:
 
 ```js
-var rewritePattern = require('regexpu/rewrite-pattern');
+// Instead of…
+var rewritePattern = require('regexpu').rewritePattern;
+
+// Use this:
+var rewritePattern = require('regexpu-core');
 ```
 
 This prevents the [Recast](https://github.com/benjamn/recast) and [Esprima](https://github.com/ariya/esprima) dependencies from being loaded into memory.

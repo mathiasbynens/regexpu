@@ -1,5 +1,5 @@
 var recast = require('recast');
-var rewritePattern = require('./rewrite-pattern.js');
+var rewritePattern = require('regexpu-core');
 var types = recast.types;
 
 var visitor = types.PathVisitor.fromMethodsObject({
