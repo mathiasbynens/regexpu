@@ -56,7 +56,7 @@
 	},
 	"dependencies": {
 		"esprima": "^2.6.0",
-		"recast": "^0.10.10",
+		"recast": "^0.10.37",
 		"regenerate": "^1.2.1",
 		"regexpu-core": "^1.0.0",
 		"regjsgen": "^0.2.0",
