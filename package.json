@@ -50,7 +50,6 @@
 		"man": "man"
 	},
 	"scripts": {
-		"build": "node scripts/iu-mappings.js && node scripts/character-class-escape-sets.js",
 		"test": "mocha tests",
 		"coverage": "istanbul cover --report html node_modules/.bin/_mocha tests/tests.js -- -u exports -R spec"
 	},

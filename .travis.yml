@@ -6,6 +6,6 @@ node_js:
   - "4"
   - "5"
 script:
-  - "npm run build && npm test"
+  - "npm test"
 after_script:
   - "istanbul cover --verbose --dir coverage node_modules/.bin/_mocha tests/tests.js -- -u exports -R spec && cat coverage/lcov.info | coveralls"
