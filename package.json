@@ -53,9 +53,7 @@
 	"dependencies": {
 		"recast": "^0.11.0",
 		"regenerate": "^1.2.1",
-		"regexpu-core": "^1.0.0",
-		"regjsgen": "^0.2.0",
-		"regjsparser": "^0.1.4"
+		"regexpu-core": "^1.0.0"
 	},
 	"devDependencies": {
 		"coveralls": "^2.11.2",
