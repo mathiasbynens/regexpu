@@ -60,7 +60,7 @@
 		"jsesc": "^0.5.0",
 		"lodash": "^4.3.0",
 		"mocha": "^2.4.5",
-		"regexpu-fixtures": "*",
+		"regexpu-fixtures": "2.0.0",
 		"unicode-5.1.0": "^0.1.5",
 		"unicode-8.0.0": "^0.1.5"
 	}
