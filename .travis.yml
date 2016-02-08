@@ -8,4 +8,4 @@ node_js:
 script:
   - "npm test"
 after_script:
-  - "istanbul cover --verbose --dir coverage node_modules/.bin/_mocha tests/tests.js -- -u exports -R spec && cat coverage/lcov.info | coveralls"
+  - "istanbul cover --verbose --dir coverage node_modules/.bin/_mocha tests/tests.js -- -u exports -R spec && coveralls < coverage/lcov.info"
