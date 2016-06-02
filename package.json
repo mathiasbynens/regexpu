@@ -52,7 +52,7 @@
 	},
 	"dependencies": {
 		"recast": "^0.11.0",
-		"regexpu-core": "^2.0.0"
+		"regexpu-core": "^3.0.0"
 	},
 	"devDependencies": {
 		"coveralls": "^2.11.2",
