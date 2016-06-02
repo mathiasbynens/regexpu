@@ -1,41 +1,45 @@
-var recast = require('recast');
-var rewritePattern = require('regexpu-core');
-var types = recast.types;
+'use strict;'
 
-var visitor = types.PathVisitor.fromMethodsObject({
-	// This method is called for any AST node whose `type` is `Literal`.
-	'visitLiteral': function(path) {
-		var node = path.value;
+const recast = require('recast');
+const rewritePattern = require('regexpu-core');
+const types = recast.types;
 
-		if (!node.regex) {
-			return false;
-		}
+module.exports = function(node, rewritePatternOptions) {
+	return types.visit(node, types.PathVisitor.fromMethodsObject({
+		// This method is called for any AST node whose `type` is `Literal`.
+		'visitLiteral': function(path) {
+			const node = path.value;
 
-		var flags = node.regex.flags;
-		if (flags.indexOf('u') == -1) {
-			return false;
-		}
-
-		var newPattern = rewritePattern(node.regex.pattern, flags);
-		var newFlags = flags.replace('u', '');
-		var result = '/' + newPattern + '/' + newFlags;
-		node.regex = {
-			'pattern': newPattern,
-			'flags': newFlags
-		}
-		node.raw = result;
-		node.value = {
-			'toString': function() {
-				return result;
+			if (!node.regex) {
+				return false;
 			}
-		};
 
-		// Return `false` to indicate that the traversal need not continue any
-		// further down this subtree. (`Literal`s don’t have descendants anyway.)
-		return false;
-	}
-});
+			const flags = node.regex.flags;
+			if (!flags.includes('u')) {
+				return false;
+			}
 
-module.exports = function(node) {
-	return types.visit(node, visitor);
+			const newPattern = rewritePattern(
+				node.regex.pattern,
+				flags,
+				rewritePatternOptions
+			);
+			const newFlags = rewritePatternOptions.useUnicodeFlag ?
+				flags :
+				flags.replace('u', '');
+			const result = `/${ newPattern }/${ newFlags }`;
+			node.regex = {
+				'pattern': newPattern,
+				'flags': newFlags
+			};
+			node.raw = result;
+			node.value = {
+				'toString': () => result
+			};
+
+			// Return `false` to indicate that the traversal need not continue any
+			// further down this subtree. (`Literal`s don’t have descendants anyway.)
+			return false;
+		}
+	}));
 };

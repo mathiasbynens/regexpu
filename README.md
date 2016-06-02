@@ -1,4 +1,4 @@
-# regexpu [![Build status](https://travis-ci.org/mathiasbynens/regexpu.svg?branch=master)](https://travis-ci.org/mathiasbynens/regexpu) [![Code coverage status](http://img.shields.io/coveralls/mathiasbynens/regexpu/master.svg)](https://coveralls.io/r/mathiasbynens/regexpu) [![Dependency status](https://gemnasium.com/mathiasbynens/regexpu.svg)](https://gemnasium.com/mathiasbynens/regexpu)
+# regexpu [![Build status](https://travis-ci.org/mathiasbynens/regexpu.svg?branch=master)](https://travis-ci.org/mathiasbynens/regexpu) [![Code coverage status](https://img.shields.io/codecov/c/github/mathiasbynens/regexpu.svg)](https://codecov.io/gh/mathiasbynens/regexpu) [![Dependency status](https://gemnasium.com/mathiasbynens/regexpu.svg)](https://gemnasium.com/mathiasbynens/regexpu)
 
 _regexpu_ is a source code transpiler that enables the use of ES6 Unicode regular expressions in JavaScript-of-today (ES5). It rewrites regular expressions that make use of [the ES6 `u` flag](https://mathiasbynens.be/notes/es6-unicode-regex) into equivalent ES5-compatible regular expressions.
 
@@ -83,7 +83,7 @@ npm install regexpu -g
 
 A string representing the semantic version number.
 
-### `regexpu.rewritePattern(pattern, flags)`
+### `regexpu.rewritePattern(pattern, flags, options)`
 
 This is an alias for the `rewritePattern` function exported by [_regexpu-core_](https://github.com/mathiasbynens/regexpu-core). Please refer to that project’s documentation for more information.
 
@@ -99,7 +99,7 @@ const rewritePattern = require('regexpu-core');
 
 This prevents the [Recast](https://github.com/benjamn/recast) and [Esprima](https://github.com/ariya/esprima) dependencies from being loaded into memory.
 
-### `regexpu.transformTree(ast)` or its alias `regexpu.transform(ast)`
+### `regexpu.transformTree(ast, options)` or its alias `regexpu.transform(ast, options)`
 
 This function accepts an abstract syntax tree representing some JavaScript code, and returns a transformed version of the tree in which any regular expression literals that use the ES6 `u` flag are rewritten in ES5.
 
@@ -112,6 +112,8 @@ const result = recast.print(transformedTree);
 console.log(result.code); // transpiled ES5 code
 console.log(result.map); // source map
 ```
+
+The optional `options` object is passed to `regexpu.rewritePattern` internally.
 
 `regexpu.transformTree` uses [Recast](https://github.com/benjamn/recast), [regjsgen](https://github.com/d10/regjsgen), [regjsparser](https://github.com/jviereck/regjsparser), and [regenerate](https://github.com/mathiasbynens/regenerate) as internal dependencies. If you only need this function in your program, it’s better to include it directly:
 
@@ -135,8 +137,9 @@ The optional `options` object recognizes the following properties:
 
 * `sourceFileName`: a string representing the file name of the original ES6 source file.
 * `sourceMapName`: a string representing the desired file name of the source map.
+* `unicodePropertyEscape`: a boolean indicating whether to enable [experimental support for Unicode property escapes](https://github.com/mathiasbynens/regexpu-core/blob/master/property-escapes.md).
 
-These properties must be provided if you want to generate source maps.
+The `sourceFileName` and `sourceMapName` properties must be provided if you want to generate source maps.
 
 ```js
 const result = regexpu.transpileCode(code, {
