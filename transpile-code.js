@@ -1,22 +1,29 @@
-var recast = require('recast');
-var transform = require('./transform-tree.js');
+'use strict';
+
+const recast = require('recast');
+const transform = require('./transform-tree.js');
 
 module.exports = function(input, options) {
 	options || (options = {});
-	var sourceFileName = options.sourceFileName || '';
-	var sourceMapName = options.sourceMapName || '';
-	var createSourceMap = sourceFileName && sourceMapName;
-	var tree = recast.parse(input, {
+	const sourceFileName = options.sourceFileName || '';
+	const sourceMapName = options.sourceMapName || '';
+	const enableUnicodePropertyEscapes = options.unicodePropertyEscape || false;
+	const useUnicodeFlag = options.useUnicodeFlag || false;
+	const createSourceMap = sourceFileName && sourceMapName;
+	const tree = recast.parse(input, {
 		'sourceFileName': sourceFileName
 	});
-	tree = transform(tree);
+	const transformed = transform(tree, {
+		'unicodePropertyEscape': enableUnicodePropertyEscapes,
+		'useUnicodeFlag': useUnicodeFlag
+	});
 	if (createSourceMap) {
 		// If a source map was requested, return an object with `code` and `map`
 		// properties.
-		return recast.print(tree, {
+		return recast.print(transformed, {
 			'sourceMapName': sourceMapName
 		});
 	}
 	// If no source map was requested, return the transpiled code directly.
-	return recast.print(tree).code;
+	return recast.print(transformed).code;
 };

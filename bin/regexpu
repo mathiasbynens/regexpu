@@ -1,112 +1,136 @@
 #!/usr/bin/env node
-(function() {
+'use strict';
 
-	var fs = require('fs');
-	var jsesc = require('jsesc');
-	var regexpu = require('../regexpu.js');
-	var strings = process.argv.splice(2);
-	var option = strings.shift();
-	var stdin = process.stdin;
-	var isFile = false;
-	var data;
-	var timeout;
-	var options = {};
-	var log = console.log;
+const fs = require('fs');
+const jsesc = require('jsesc');
+const regexpu = require('../regexpu.js');
+const strings = process.argv.splice(2);
+const stdin = process.stdin;
+let isFile = false;
+const options = {};
+const log = console.log;
 
-	var main = function() {
+// Workaround for Node.js v6. https://twitter.com/izs/status/732317861067153408
+[process.stdout, process.stderr].forEach((s) => {
+	s && s._handle && s._handle.setBlocking && s._handle.setBlocking(true);
+});
 
-		if (/^(?:-h|--help|undefined)$/.test(option)) {
-			log(
-				'regexpu v%s - https://mths.be/regexpu',
-				regexpu.version
-			);
-			log([
-				'\nUsage:\n',
-				'\tregexpu [-c | --code] [snippet ...]',
-				'\tregexpu [-f | --file] [file ...]',
-				'\tregexpu [-v | --version]',
-				'\tregexpu [-h | --help]',
-				'\nExamples:\n',
-				'\tregexpu -f foo-es6.js > foo-es5.js',
-				'\tregexpu -c \'var x = /foo.bar/u;\'',
-				'\techo \'var x = /foo.bar/u;\' | regexpu -c'
-			].join('\n'));
+const showHelp = function() {
+	log(
+		'regexpu v%s - https://mths.be/regexpu',
+		regexpu.version
+	);
+	log([
+		'\nUsage:\n',
+		'\tregexpu [-c | --code] [snippet ...]',
+		'\tregexpu [-c | --code] [-p | --unicode-property-escape] [-u | --use-unicode-flag] [snippet ...]',
+		'\tregexpu [-f | --file] [file ...]',
+		'\tregexpu [-v | --version]',
+		'\tregexpu [-h | --help]',
+		'\nExamples:\n',
+		'\tregexpu -f foo-es6.js > foo-es5.js',
+		'\tregexpu -c \'var x = /foo.bar/u;\'',
+		'\tregexpu -c -p -u \'var x = /\\p{Lu}/u;\'',
+		'\techo \'var x = /foo.bar/u;\' | regexpu -c'
+	].join('\n'));
+};
+
+const main = function() {
+
+	if (!strings.length) {
+		showHelp();
+		return process.exit(1);
+	}
+
+	for (const string of strings) {
+
+		let snippet;
+
+		if (/^(?:-h|--help|undefined)$/.test(string)) {
+			showHelp();
 			return process.exit(1);
 		}
 
-		if (/^(?:-v|--version)$/.test(option)) {
+		if (/^(?:-v|--version)$/.test(string)) {
 			log('v%s', regexpu.version);
 			return process.exit(1);
 		}
 
-		if (/^(?:-f|--file)$/.test(option)) {
+		if (/^(?:-f|--file)$/.test(string)) {
 			isFile = true;
-		} else if (!/^(?:-c|--code)$/.test(option)) {
-			log('Unrecognized option `%s`.', option);
-			log('Try `regexpu --help` for more information.');
-			return process.exit(1);
+			continue;
 		}
 
-		if (!strings.length) {
-			log('Error: option `%s` requires an argument.', option);
-			log('Try `regexpu --help` for more information.');
-			return process.exit(1);
+		if (/^(?:-c|--code)$/.test(string)) {
+			isFile = false;
+			continue;
 		}
 
-		strings.forEach(function(snippet) {
-			var result;
-			if (isFile) {
-				try {
-					snippet = fs.readFileSync(snippet, 'utf8');
-				} catch (exception) {
-					log('Error: no such file. (`%s`)', snippet);
-					return process.exit(1);
-				}
-			}
+		if (/^(?:-p|--unicode-property-escape)$/.test(string)) {
+			options.unicodePropertyEscape = true;
+			continue;
+		}
+
+		if (/^(?:-u|--use-unicode-flag)$/.test(string)) {
+			options.useUnicodeFlag = true;
+			continue;
+		}
+
+		if (isFile) {
 			try {
-				result = regexpu.transpileCode(snippet);
-				log(result);
+				snippet = fs.readFileSync(string, 'utf8');
 			} catch (exception) {
-				log(exception.message + '\n');
-				log('Error: failed to transpile. Make sure the JavaScript code is valid.');
-				log('If you think this is a bug in regexpu, please report it:');
-				log('https://github.com/mathiasbynens/regexpu/issues/new');
-				log('\nStack trace using regexpu@%s:\n', regexpu.version);
-				log(exception.stack);
+				log('Error: no such file. (`%s`)', string);
 				return process.exit(1);
 			}
-		});
-		// Return with exit status 0 outside of the `forEach` loop, in case
-		// multiple snippets or files were passed in.
-		return process.exit(0);
-	};
-
-	if (stdin.isTTY) {
-		// handle shell arguments
-		main();
-	} else {
-		// Either the script is called from within a non-TTY context, or `stdin`
-		// content is being piped in.
-		if (!process.stdout.isTTY) {
-			// The script was called from a non-TTY context. This is a rather uncommon
-			// use case we don’t actively support. However, we don’t want the script
-			// to wait forever in such cases, so…
-			timeout = setTimeout(function() {
-				// …if no piped data arrived after a whole minute, handle shell
-				// arguments instead.
-				main();
-			}, 60000);
+		} else {
+			snippet = string;
 		}
-		data = '';
-		stdin.on('data', function(chunk) {
-			clearTimeout(timeout);
-			data += chunk;
-		});
-		stdin.on('end', function() {
-			strings.push(data.trim());
-			main();
-		});
-		stdin.resume();
+		try {
+			const result = regexpu.transpileCode(snippet, options);
+			log(result);
+		} catch (exception) {
+			log(exception.message + '\n');
+			log('Error: failed to transpile. Make sure the JavaScript code is valid.');
+			log('If you think this is a bug in regexpu, please report it:');
+			log('https://github.com/mathiasbynens/regexpu/issues/new');
+			log('\nStack trace using regexpu@%s:\n', regexpu.version);
+			log(exception.stack);
+			return process.exit(1);
+		}
+
 	}
 
-}());
+	// Return with exit status 0 outside of the `forEach` loop, in case
+	// multiple snippets or files were passed in.
+	return process.exit(0);
+};
+
+if (stdin.isTTY) {
+	// handle shell arguments
+	main();
+} else {
+	let timeout;
+	// Either the script is called from within a non-TTY context, or `stdin`
+	// content is being piped in.
+	if (!process.stdout.isTTY) {
+		// The script was called from a non-TTY context. This is a rather uncommon
+		// use case we don’t actively support. However, we don’t want the script
+		// to wait forever in such cases, so…
+		timeout = setTimeout(function() {
+			// …if no piped data arrived after a whole minute, handle shell
+			// arguments instead.
+			main();
+		}, 60000);
+	}
+	let data = '';
+	stdin.on('data', function(chunk) {
+		clearTimeout(timeout);
+		data += chunk;
+	});
+	stdin.on('end', function() {
+		strings.push(data.trim());
+		main();
+	});
+	stdin.resume();
+}

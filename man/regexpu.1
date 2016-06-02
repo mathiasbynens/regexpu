@@ -1,4 +1,4 @@
-.Dd September 1, 2014
+.Dd June 2, 2016
 .Dt regexpu 1
 .Sh NAME
 .Nm regexpu
@@ -21,6 +21,10 @@ transpiles ES6 Unicode regular expressions to equivalent ES5.
 Print a transpiled version of the given ES6 snippet.
 .It Sy "-f, --file <file>"
 Print a transpiled version of the given ES6 file.
+.It Sy "-p, --unicode-property-escape"
+Enable support for Unicode property escapes.
+.It Sy "-u, --use-unicode-flag"
+Use Unicode code point escapes (which require the `u` flag) in the output.
 .It Sy "-v, --version"
 Print regexpu's version.
 .It Sy "-h, --help"

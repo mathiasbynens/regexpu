@@ -1,6 +1,8 @@
-var assert = require('assert');
-var fixtures = require('regexpu-fixtures');
-var regexpu = require('../regexpu.js');
+'use strict';
+
+const assert = require('assert');
+const fixtures = require('regexpu-fixtures');
+const regexpu = require('../regexpu.js');
 
 describe('API', function() {
 	it('supports loading each API method separately', function() {
@@ -12,14 +14,17 @@ describe('API', function() {
 
 describe('regexpu.rewritePattern', function() {
 
-	fixtures.forEach(function(fixture) {
-		var pattern = fixture.pattern;
-		fixture.flags.forEach(function(flag) {
+	for (const fixture of fixtures) {
+		const pattern = fixture.pattern;
+		for (const flag of fixture.flags) {
 			it('rewrites `/' + pattern + '/' + flag + '` correctly', function() {
-				assert.equal(regexpu.rewritePattern(pattern, flag), fixture.transpiled);
+				assert.equal(
+					regexpu.rewritePattern(pattern, flag),
+					fixture.transpiled
+				);
 			});
-		});
-	});
+		}
+	}
 
 });
 
@@ -36,25 +41,25 @@ describe('regexpu.transformTree', function() {
 
 describe('regexpu.transpileCode', function() {
 
-	fixtures.forEach(function(fixture) {
-		fixture.flags.forEach(function(flag) {
-			if (flag.indexOf('u') == -1) {
+	for (const fixture of fixtures) {
+		for (const flag of fixture.flags) {
+			if (!flag.includes('u')) {
 				// Unlike `rewritePattern` (which rewrites any regular expression you
 				// feed it), the transpiler is only supposed to handle regular
 				// expressions with the `u` flag set. This one doesn’t, so skip it.
-				return;
+				continue;
 			}
-			var code = 'var x = /' + fixture.pattern + '/' + flag + ';';
-			var expected = 'var x = /' + fixture.transpiled + '/' +
-				flag.replace('u', '') + ';';
+			const code = `var x = /${ fixture.pattern }/${ flag };`;
+			const expected = `var x = /${ fixture.transpiled }/${
+				flag.replace('u', '') };`;
 			it('transpiles `' + code + '` correctly', function() {
 				assert.equal(regexpu.transpileCode(code), expected);
 			});
-		});
-	});
+		}
+	}
 
 	it('creates source maps on request', function() {
-		var result = regexpu.transpileCode('var x = /[\\u{1D306}-\\u{1D308}]/u;', {
+		const result = regexpu.transpileCode('var x = /[\\u{1D306}-\\u{1D308}]/u;', {
 			'sourceFileName': 'es6.js',
 			'sourceMapName': 'es6.map',
 		});
@@ -82,6 +87,28 @@ describe('regexpu.transpileCode', function() {
 		assert.equal(regexpu.transpileCode('var x = null;'), 'var x = null;');
 		assert.equal(regexpu.transpileCode('var x = [];'), 'var x = [];');
 		assert.equal(regexpu.transpileCode('var x = {};'), 'var x = {};');
+	});
+
+	it('passes its `options` argument to `rewritePattern`', function() {
+		assert.equal(
+			regexpu.transpileCode('var x = /\\p{ASCII}/u;', {
+				'unicodePropertyEscape': true
+			}),
+			'var x = /[\\0-\\x7F]/;'
+		);
+		assert.equal(
+			regexpu.transpileCode('var x = /\\p{Block=Aegean_Numbers}/u;', {
+				'unicodePropertyEscape': true
+			}),
+			'var x = /(?:\\uD800[\\uDD00-\\uDD3F])/;'
+		);
+		assert.equal(
+			regexpu.transpileCode('var x = /\\p{Block=Aegean_Numbers}/u;', {
+				'unicodePropertyEscape': true,
+				'useUnicodeFlag': true
+			}),
+			'var x = /[\\u{10100}-\\u{1013F}]/u;'
+		);
 	});
 
 });
