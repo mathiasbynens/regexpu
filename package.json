@@ -56,14 +56,14 @@
   },
   "dependencies": {
     "recast": "^0.11.0",
-    "regexpu-core": "^3.0.2"
+    "regexpu-core": "^3.1.0"
   },
   "devDependencies": {
     "browserify": "^13.0.1",
     "codecov": "^1.0.1",
     "coveralls": "^2.11.9",
     "istanbul": "^0.4.0",
-    "jsesc": "^2.1.0",
+    "jsesc": "^2.2.0",
     "lodash": "^4.3.0",
     "mocha": "^2.4.5",
     "regexpu-fixtures": "*"
