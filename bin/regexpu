@@ -6,7 +6,7 @@ const jsesc = require('jsesc');
 const regexpu = require('../regexpu.js');
 const strings = process.argv.splice(2);
 const stdin = process.stdin;
-let isFile = false;
+let isFlags = false;
 const options = {};
 const log = console.log;
 
@@ -22,16 +22,15 @@ const showHelp = function() {
 	);
 	log([
 		'\nUsage:\n',
-		'\tregexpu [-c | --code] [snippet ...]',
-		'\tregexpu [-c | --code] [-p | --unicode-property-escape] [-u | --use-unicode-flag] [snippet ...]',
-		'\tregexpu [-f | --file] [file ...]',
+		'\tregexpu [snippet ...]',
+		'\tregexpu [-p | --unicode-property-escape] [-u | --use-unicode-flag] [snippet ...]',
+		'\tregexpu [-f | --flags] [gimsuy] [-s | --dotall]',
 		'\tregexpu [-v | --version]',
 		'\tregexpu [-h | --help]',
 		'\nExamples:\n',
-		'\tregexpu -f foo-es6.js > foo-es5.js',
-		'\tregexpu -c \'var x = /foo.bar/u;\'',
-		'\tregexpu -c -p -u \'var x = /\\p{Lu}/u;\'',
-		'\techo \'var x = /foo.bar/u;\' | regexpu -c'
+		'\tregexpu \'const x = /foo.bar/u;\'',
+		'\tregexpu -p -u \'const x = /\\p{Lu}/u;\'',
+		'\techo \'const x = /foo.bar/u;\' | regexpu'
 	].join('\n'));
 };
 
@@ -56,13 +55,13 @@ const main = function() {
 			return process.exit(1);
 		}
 
-		if (/^(?:-f|--file)$/.test(string)) {
-			isFile = true;
+		if (/^(?:-f|--flags)$/.test(string)) {
+			isFlags = true;
 			continue;
 		}
 
-		if (/^(?:-c|--code)$/.test(string)) {
-			isFile = false;
+		if (/^(?:-s|--dotall)$/.test(string)) {
+			options.dotAllFlag = true;
 			continue;
 		}
 
@@ -76,16 +75,13 @@ const main = function() {
 			continue;
 		}
 
-		if (isFile) {
-			try {
-				snippet = fs.readFileSync(string, 'utf8');
-			} catch (exception) {
-				log('Error: no such file. (`%s`)', string);
-				return process.exit(1);
-			}
-		} else {
-			snippet = string;
+		if (isFlags) {
+			flags = string;
+			isFlags = false;
+			continue;
 		}
+
+		snippet = string;
 		try {
 			const result = regexpu.transpileCode(snippet, options);
 			log(result);

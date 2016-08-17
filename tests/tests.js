@@ -109,6 +109,24 @@ describe('regexpu.transpileCode', function() {
 			}),
 			'var x = /[\\u{10100}-\\u{1013F}]/u;'
 		);
+		assert.equal(
+			regexpu.transpileCode('var x = /./s;', {
+				'dotAllFlag': true
+			}),
+			'var x = /[\\0-\\uFFFF]/;'
+		);
+		assert.equal(
+			regexpu.transpileCode('var x = /./u;', {
+				'dotAllFlag': true
+			}),
+			'var x = /(?:[\\0-\\t\\x0B\\f\\x0E-\\u2027\\u202A-\\uD7FF\\uE000-\\uFFFF]|[\\uD800-\\uDBFF][\\uDC00-\\uDFFF]|[\\uD800-\\uDBFF](?![\\uDC00-\\uDFFF])|(?:[^\\uD800-\\uDBFF]|^)[\\uDC00-\\uDFFF])/;'
+		);
+		assert.equal(
+			regexpu.transpileCode('var x = /./su;', {
+				'dotAllFlag': true
+			}),
+			'var x = /(?:[\\0-\\uD7FF\\uE000-\\uFFFF]|[\\uD800-\\uDBFF][\\uDC00-\\uDFFF]|[\\uD800-\\uDBFF](?![\\uDC00-\\uDFFF])|(?:[^\\uD800-\\uDBFF]|^)[\\uDC00-\\uDFFF])/;'
+		);
 	});
 
 });

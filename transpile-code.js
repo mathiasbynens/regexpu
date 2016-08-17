@@ -7,6 +7,7 @@ module.exports = function(input, options) {
 	options || (options = {});
 	const sourceFileName = options.sourceFileName || '';
 	const sourceMapName = options.sourceMapName || '';
+	const enableDotAllFlag = options.dotAllFlag || false;
 	const enableUnicodePropertyEscapes = options.unicodePropertyEscape || false;
 	const useUnicodeFlag = options.useUnicodeFlag || false;
 	const createSourceMap = sourceFileName && sourceMapName;
@@ -14,6 +15,7 @@ module.exports = function(input, options) {
 		'sourceFileName': sourceFileName
 	});
 	const transformed = transform(tree, {
+		'dotAllFlag': enableDotAllFlag,
 		'unicodePropertyEscape': enableUnicodePropertyEscapes,
 		'useUnicodeFlag': useUnicodeFlag
 	});

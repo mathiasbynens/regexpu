@@ -32,7 +32,7 @@ console.log([
 Let’s transpile it:
 
 ```bash
-$ regexpu -f example-es6.js > example-es5.js
+$ regexpu < example-es6.js > example-es5.js
 ```
 
 `example-es5.js` can now be used in ES5 environments. Its contents are as follows:
@@ -113,7 +113,7 @@ console.log(result.code); // transpiled ES5 code
 console.log(result.map); // source map
 ```
 
-The optional `options` object is passed to `regexpu.rewritePattern` internally.
+The optional `options` object is passed to _regexpu-core_’s `rewritePattern`. For a description of the available options, [see its documentation](https://github.com/mathiasbynens/regexpu-core#rewritepatternpattern-flags-options).
 
 `regexpu.transformTree` uses [Recast](https://github.com/benjamn/recast), [regjsgen](https://github.com/d10/regjsgen), [regjsparser](https://github.com/jviereck/regjsparser), and [regenerate](https://github.com/mathiasbynens/regenerate) as internal dependencies. If you only need this function in your program, it’s better to include it directly:
 
@@ -137,6 +137,7 @@ The optional `options` object recognizes the following properties:
 
 * `sourceFileName`: a string representing the file name of the original ES6 source file.
 * `sourceMapName`: a string representing the desired file name of the source map.
+* `dotAllFlag`: a boolean indicating whether to enable [experimental support for the `s` (`dotAll`) flag](https://github.com/mathiasbynens/es-regexp-dotall-flag).
 * `unicodePropertyEscape`: a boolean indicating whether to enable [experimental support for Unicode property escapes](https://github.com/mathiasbynens/regexpu-core/blob/master/property-escapes.md).
 
 The `sourceFileName` and `sourceMapName` properties must be provided if you want to generate source maps.

@@ -1,4 +1,4 @@
-'use strict;'
+'use strict';
 
 const recast = require('recast');
 const rewritePattern = require('regexpu-core');
@@ -15,7 +15,8 @@ module.exports = function(node, rewritePatternOptions) {
 			}
 
 			const flags = node.regex.flags;
-			if (!flags.includes('u')) {
+			const useDotAll = rewritePatternOptions.dotAllFlag && flags.includes('s');
+			if (!flags.includes('u') && !useDotAll) {
 				return false;
 			}
 
@@ -24,9 +25,10 @@ module.exports = function(node, rewritePatternOptions) {
 				flags,
 				rewritePatternOptions
 			);
+			const filteredFlags = useDotAll ? flags.replace('s', '') : flags;
 			const newFlags = rewritePatternOptions.useUnicodeFlag ?
-				flags :
-				flags.replace('u', '');
+				filteredFlags :
+				filteredFlags.replace('u', '');
 			const result = `/${ newPattern }/${ newFlags }`;
 			node.regex = {
 				'pattern': newPattern,
