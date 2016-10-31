@@ -63,7 +63,7 @@
     "codecov": "^1.0.1",
     "istanbul": "^0.4.0",
     "jsesc": "^2.2.0",
-    "lodash": "^4.15.0",
+    "lodash": "^4.16.5",
     "mocha": "^3.0.2",
     "regexpu-fixtures": "*"
   }
