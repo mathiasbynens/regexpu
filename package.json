@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "recast": "^0.11.12",
-    "regexpu-core": "^3.3.0"
+    "regexpu-core": "^4.0.0"
   },
   "devDependencies": {
     "browserify": "^13.1.0",

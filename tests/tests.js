@@ -97,17 +97,17 @@ describe('regexpu.transpileCode', function() {
 			'var x = /[\\0-\\x7F]/;'
 		);
 		assert.equal(
-			regexpu.transpileCode('var x = /\\p{Block=Aegean_Numbers}/u;', {
+			regexpu.transpileCode('var x = /\\p{Script_Extensions=Anatolian_Hieroglyphs}/u;', {
 				'unicodePropertyEscape': true
 			}),
-			'var x = /(?:\\uD800[\\uDD00-\\uDD3F])/;'
+			'var x = /(?:\\uD811[\\uDC00-\\uDE46])/;'
 		);
 		assert.equal(
-			regexpu.transpileCode('var x = /\\p{Block=Aegean_Numbers}/u;', {
+			regexpu.transpileCode('var x = /\\p{Script_Extensions=Anatolian_Hieroglyphs}/u;', {
 				'unicodePropertyEscape': true,
 				'useUnicodeFlag': true
 			}),
-			'var x = /[\\u{10100}-\\u{1013F}]/u;'
+			'var x = /[\\u{14400}-\\u{14646}]/u;'
 		);
 		assert.equal(
 			regexpu.transpileCode('var x = /./s;', {
