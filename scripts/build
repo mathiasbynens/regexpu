@@ -1,0 +1,21 @@
+#/usr/bin/env bash
+
+args=$(
+	for path in $(ls ./node_modules/regenerate-unicode-properties/*/*.js); do
+		name=${path/.\/node_modules\//};
+		printf -- "--require ${path}:${name} ";
+	done;
+);
+
+mkdir -p dist;
+
+echo 'Building browser-compatible version…';
+browserify $args --require ./regexpu.js:regexpu -o dist/regexpu-browser.js;
+
+echo 'Minifying…';
+babili --no-comments dist/regexpu-browser.js > dist/regexpu-browser.min.js;
+
+echo 'Updating online demo…';
+rsync --verbose --archive --compress \
+	dist/regexpu-browser.min.js \
+	mothereff.in:httpdocs/regexpu.min.js;

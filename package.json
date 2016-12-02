@@ -50,7 +50,7 @@
     "man": "man"
   },
   "scripts": {
-    "build": "scripts/browserify",
+    "build": "scripts/build",
     "test": "mocha tests",
     "cover": "istanbul cover --report html node_modules/.bin/_mocha tests/tests.js -- -u exports -R spec"
   },
@@ -60,6 +60,7 @@
     "regexpu-core": "^4.0.2"
   },
   "devDependencies": {
+    "babili": "0.0.9",
     "browserify": "^13.1.0",
     "codecov": "^1.0.1",
     "istanbul": "^0.4.0",

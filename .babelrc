@@ -1,0 +1,4 @@
+{
+  "presets": ["babili"],
+  comments: false
+}
