@@ -60,14 +60,14 @@ describe('regexpu.transpileCode', function() {
 
 	it('creates source maps on request', function() {
 		const result = regexpu.transpileCode('var x = /[\\u{1D306}-\\u{1D308}]/u;', {
-			'sourceFileName': 'es6.js',
-			'sourceMapName': 'es6.map',
+			'sourceFileName': 'es2015.js',
+			'sourceMapName': 'es2015.map',
 		});
 		assert.equal(result.code, 'var x = /(?:\\uD834[\\uDF06-\\uDF08])/;');
 		assert.deepEqual(result.map, {
 			'version': 3,
-			'file': 'es6.map',
-			'sources': ['es6.js'],
+			'file': 'es2015.map',
+			'sources': ['es2015.js'],
 			'names': [],
 			'mappings': 'AAAA,CAAC,CAAC,EAAE,EAAE,6BAA0B',
 			'sourcesContent': [

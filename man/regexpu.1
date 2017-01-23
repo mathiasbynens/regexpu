@@ -1,8 +1,8 @@
-.Dd June 2, 2016
+.Dd January 23, 2017
 .Dt regexpu 1
 .Sh NAME
 .Nm regexpu
-.Nd transpile ES6 Unicode regular expressions to equivalent ES5
+.Nd transpile ES2015 Unicode regular expressions to equivalent ES5
 .Sh SYNOPSIS
 .Nm
 .Op Fl -c | -code Ar snippet
@@ -14,13 +14,13 @@
 .Op Fl h | -help
 .Sh DESCRIPTION
 .Nm
-transpiles ES6 Unicode regular expressions to equivalent ES5.
+transpiles ES2015 Unicode regular expressions to equivalent ES5.
 .Sh OPTIONS
 .Bl -ohang -offset
 .It Sy "-c, --code <snippet>"
-Print a transpiled version of the given ES6 snippet.
+Print a transpiled version of the given ES2015 snippet.
 .It Sy "-f, --file <file>"
-Print a transpiled version of the given ES6 file.
+Print a transpiled version of the given ES2015 file.
 .It Sy "-p, --unicode-property-escape"
 Enable support for Unicode property escapes.
 .It Sy "-u, --use-unicode-flag"
@@ -47,12 +47,12 @@ flag was set); or, an error occurred.
 .El
 .Sh EXAMPLES
 .Bl -ohang -offset
-.It Sy "regexpu -f foo-es6.js > foo-es5.js"
-Transpile `foo-es6.js` to valid ES5 and save the result as `foo-es5.js`.
+.It Sy "regexpu -f foo.js > foo-es5.js"
+Transpile `foo.js` to valid ES5 and save the result as `foo-es5.js`.
 .It Sy "regexpu -c 'var x = /foo.bar/u;'"
-Print the transpiled version of the given ES6 snippet.
+Print the transpiled version of the given ES2015 snippet.
 .It Sy "echo 'var x = /foo.bar/u;' | regexpu -c"
-Print the transpiled version of the ES6 snippet that gets piped in.
+Print the transpiled version of the ES2015 snippet that gets piped in.
 .El
 .Sh BUGS
 regexpu's bug tracker is located at <https://github.com/mathiasbynens/regexpu/issues>.

@@ -1,7 +1,7 @@
 {
   "name": "regexpu",
   "version": "4.0.3",
-  "description": "A source code transpiler that enables the use of ES6 Unicode regular expressions in ES5.",
+  "description": "A source code transpiler that enables the use of ES2015 Unicode regular expressions in ES5.",
   "homepage": "https://mths.be/regexpu",
   "main": "regexpu.js",
   "engines": {
@@ -14,6 +14,7 @@
     "ecmascript",
     "es5",
     "es6",
+    "es2015",
     "harmony",
     "javascript",
     "refactoring",

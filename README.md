@@ -1,14 +1,14 @@
 # regexpu [![Build status](https://travis-ci.org/mathiasbynens/regexpu.svg?branch=master)](https://travis-ci.org/mathiasbynens/regexpu) [![Code coverage status](https://img.shields.io/codecov/c/github/mathiasbynens/regexpu.svg)](https://codecov.io/gh/mathiasbynens/regexpu) [![Dependency status](https://gemnasium.com/mathiasbynens/regexpu.svg)](https://gemnasium.com/mathiasbynens/regexpu)
 
-_regexpu_ is a source code transpiler that enables the use of ES6 Unicode regular expressions in JavaScript-of-today (ES5). It rewrites regular expressions that make use of [the ES6 `u` flag](https://mathiasbynens.be/notes/es6-unicode-regex) into equivalent ES5-compatible regular expressions.
+_regexpu_ is a source code transpiler that enables the use of ES2015 Unicode regular expressions in JavaScript-of-today (ES5). It rewrites regular expressions that make use of [the ES2015 `u` flag](https://mathiasbynens.be/notes/es6-unicode-regex) into equivalent ES5-compatible regular expressions.
 
 [Here’s an online demo.](https://mothereff.in/regexpu)
 
-[Traceur v0.0.61+](https://github.com/google/traceur-compiler), [Babel v1.5.0+](https://github.com/babel/babel), [esnext v0.12.0+](https://github.com/esnext/esnext), and [Bublé v0.12.0+](https://buble.surge.sh/) use _regexpu_ for their `u` regexp transpilation. The REPL demos for [Traceur](https://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Traceur%20now%20uses%20regexpu%20%28https%3A%2F%2Fmths.be%2Fregexpu%29%20to%20transpile%20regular%0A%2F%2F%20expression%20literals%20that%20have%20the%20ES6%20%60u%60%20flag%20set%20into%20equivalent%20ES5.%0A%0A%2F%2F%20Match%20any%20symbol%20from%20U%2B1F4A9%20PILE%20OF%20POO%20to%20U%2B1F4AB%20DIZZY%20SYMBOL.%0Avar%20regex%20%3D%20%2F%5B%F0%9F%92%A9-%F0%9F%92%AB%5D%2Fu%3B%20%2F%2F%20Or%2C%20%60%2F%5Cu%7B1F4A9%7D-%5Cu%7B1F4AB%7D%2Fu%60.%0Aconsole.log%28%0A%20%20regex.test%28'%F0%9F%92%A8'%29%2C%20%2F%2F%20false%0A%20%20regex.test%28'%F0%9F%92%A9'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AA'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AB'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AC'%29%20%20%2F%2F%20false%0A%29%3B%0A%0A%2F%2F%20See%20https%3A%2F%2Fmathiasbynens.be%2Fnotes%2Fes6-unicode-regex%20for%20more%20examples%20and%0A%2F%2F%20info.%0A), [Babel](https://babeljs.io/repl/#?experimental=true&playground=true&evaluate=true&code=%2F%2F%20Babel%20now%20uses%20regexpu%20%28https%3A%2F%2Fmths.be%2Fregexpu%29%20to%20transpile%20regular%0A%2F%2F%20expression%20literals%20that%20have%20the%20ES6%20%60u%60%20flag%20set%20into%20equivalent%20ES5.%0A%0A%2F%2F%20Match%20any%20symbol%20from%20U%2B1F4A9%20PILE%20OF%20POO%20to%20U%2B1F4AB%20DIZZY%20SYMBOL.%0Avar%20regex%20%3D%20%2F%5B%F0%9F%92%A9-%F0%9F%92%AB%5D%2Fu%3B%20%2F%2F%20Or%2C%20%60%2F%5Cu%7B1F4A9%7D-%5Cu%7B1F4AB%7D%2Fu%60.%0Aconsole.log%28%0A%20%20regex.test%28'%F0%9F%92%A8'%29%2C%20%2F%2F%20false%0A%20%20regex.test%28'%F0%9F%92%A9'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AA'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AB'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AC'%29%20%20%2F%2F%20false%0A%29%3B%0A%0A%2F%2F%20See%20https%3A%2F%2Fmathiasbynens.be%2Fnotes%2Fes6-unicode-regex%20for%20more%20examples%20and%0A%2F%2F%20info.%0A), [esnext](https://esnext.github.io/esnext/#%2F%2F%20esnext%20now%20uses%20regexpu%20%28https%3A%2F%2Fmths.be%2Fregexpu%29%20to%20transpile%20regular%0A%2F%2F%20expression%20literals%20that%20have%20the%20ES6%20%60u%60%20flag%20set%20into%20equivalent%20ES5.%0A%0A%2F%2F%20Match%20any%20symbol%20from%20U%2B1F4A9%20PILE%20OF%20POO%20to%20U%2B1F4AB%20DIZZY%20SYMBOL.%0Avar%20regex%20%3D%20%2F%5B%F0%9F%92%A9-%F0%9F%92%AB%5D%2Fu%3B%20%2F%2F%20Or%2C%20%60%2F%5Cu%7B1F4A9%7D-%5Cu%7B1F4AB%7D%2Fu%60.%0Aconsole.log%28%0A%20%20regex.test%28'%F0%9F%92%A8'%29%2C%20%2F%2F%20false%0A%20%20regex.test%28'%F0%9F%92%A9'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AA'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AB'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AC'%29%20%20%2F%2F%20false%0A%29%3B%0A%0A%2F%2F%20See%20https%3A%2F%2Fmathiasbynens.be%2Fnotes%2Fes6-unicode-regex%20for%20more%20examples%20and%0A%2F%2F%20info.%0A), and [Bublé](https://buble.surge.sh/#%2F%2F%20Bubl%C3%A9%20now%20uses%20regexpu%20%28https%3A%2F%2Fmths.be%2Fregexpu%29%20to%20transpile%20regular%0A%2F%2F%20expression%20literals%20that%20have%20the%20ES6%20%60u%60%20flag%20set%20into%20equivalent%20ES5.%0A%0A%2F%2F%20Match%20any%20symbol%20from%20U%2B1F4A9%20PILE%20OF%20POO%20to%20U%2B1F4AB%20DIZZY%20SYMBOL.%0Avar%20regex%20%3D%20%2F%5B%F0%9F%92%A9-%F0%9F%92%AB%5D%2Fu%3B%20%2F%2F%20Or%2C%20%60%2F%5Cu%7B1F4A9%7D-%5Cu%7B1F4AB%7D%2Fu%60.%0Aconsole.log%28%0A%20%20regex.test%28'%F0%9F%92%A8'%29%2C%20%2F%2F%20false%0A%20%20regex.test%28'%F0%9F%92%A9'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AA'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AB'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AC'%29%20%20%2F%2F%20false%0A%29%3B%0A%0A%2F%2F%20See%20https%3A%2F%2Fmathiasbynens.be%2Fnotes%2Fes6-unicode-regex%20for%20more%20examples%0A%2F%2F%20and%20info.%0A) let you try `u` regexps as well as other ES.next features.
+[Traceur v0.0.61+](https://github.com/google/traceur-compiler), [Babel v1.5.0+](https://github.com/babel/babel), [esnext v0.12.0+](https://github.com/esnext/esnext), and [Bublé v0.12.0+](https://buble.surge.sh/) use _regexpu_ for their `u` regexp transpilation. The REPL demos for [Traceur](https://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Traceur%20now%20uses%20regexpu%20%28https%3A%2F%2Fmths.be%2Fregexpu%29%20to%20transpile%20regular%0A%2F%2F%20expression%20literals%20that%20have%20the%20ES2015%20%60u%60%20flag%20set%20into%20equivalent%20ES5.%0A%0A%2F%2F%20Match%20any%20symbol%20from%20U%2B1F4A9%20PILE%20OF%20POO%20to%20U%2B1F4AB%20DIZZY%20SYMBOL.%0Avar%20regex%20%3D%20%2F%5B%F0%9F%92%A9-%F0%9F%92%AB%5D%2Fu%3B%20%2F%2F%20Or%2C%20%60%2F%5Cu%7B1F4A9%7D-%5Cu%7B1F4AB%7D%2Fu%60.%0Aconsole.log%28%0A%20%20regex.test%28'%F0%9F%92%A8'%29%2C%20%2F%2F%20false%0A%20%20regex.test%28'%F0%9F%92%A9'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AA'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AB'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AC'%29%20%20%2F%2F%20false%0A%29%3B%0A%0A%2F%2F%20See%20https%3A%2F%2Fmathiasbynens.be%2Fnotes%2Fes6-unicode-regex%20for%20more%20examples%20and%0A%2F%2F%20info.%0A), [Babel](https://babeljs.io/repl/#?experimental=true&playground=true&evaluate=true&code=%2F%2F%20Babel%20now%20uses%20regexpu%20%28https%3A%2F%2Fmths.be%2Fregexpu%29%20to%20transpile%20regular%0A%2F%2F%20expression%20literals%20that%20have%20the%20ES2015%20%60u%60%20flag%20set%20into%20equivalent%20ES5.%0A%0A%2F%2F%20Match%20any%20symbol%20from%20U%2B1F4A9%20PILE%20OF%20POO%20to%20U%2B1F4AB%20DIZZY%20SYMBOL.%0Avar%20regex%20%3D%20%2F%5B%F0%9F%92%A9-%F0%9F%92%AB%5D%2Fu%3B%20%2F%2F%20Or%2C%20%60%2F%5Cu%7B1F4A9%7D-%5Cu%7B1F4AB%7D%2Fu%60.%0Aconsole.log%28%0A%20%20regex.test%28'%F0%9F%92%A8'%29%2C%20%2F%2F%20false%0A%20%20regex.test%28'%F0%9F%92%A9'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AA'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AB'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AC'%29%20%20%2F%2F%20false%0A%29%3B%0A%0A%2F%2F%20See%20https%3A%2F%2Fmathiasbynens.be%2Fnotes%2Fes6-unicode-regex%20for%20more%20examples%20and%0A%2F%2F%20info.%0A), [esnext](https://esnext.github.io/esnext/#%2F%2F%20esnext%20now%20uses%20regexpu%20%28https%3A%2F%2Fmths.be%2Fregexpu%29%20to%20transpile%20regular%0A%2F%2F%20expression%20literals%20that%20have%20the%20ES2015%20%60u%60%20flag%20set%20into%20equivalent%20ES5.%0A%0A%2F%2F%20Match%20any%20symbol%20from%20U%2B1F4A9%20PILE%20OF%20POO%20to%20U%2B1F4AB%20DIZZY%20SYMBOL.%0Avar%20regex%20%3D%20%2F%5B%F0%9F%92%A9-%F0%9F%92%AB%5D%2Fu%3B%20%2F%2F%20Or%2C%20%60%2F%5Cu%7B1F4A9%7D-%5Cu%7B1F4AB%7D%2Fu%60.%0Aconsole.log%28%0A%20%20regex.test%28'%F0%9F%92%A8'%29%2C%20%2F%2F%20false%0A%20%20regex.test%28'%F0%9F%92%A9'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AA'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AB'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AC'%29%20%20%2F%2F%20false%0A%29%3B%0A%0A%2F%2F%20See%20https%3A%2F%2Fmathiasbynens.be%2Fnotes%2Fes6-unicode-regex%20for%20more%20examples%20and%0A%2F%2F%20info.%0A), and [Bublé](https://buble.surge.sh/#%2F%2F%20Bubl%C3%A9%20now%20uses%20regexpu%20%28https%3A%2F%2Fmths.be%2Fregexpu%29%20to%20transpile%20regular%0A%2F%2F%20expression%20literals%20that%20have%20the%20ES2015%20%60u%60%20flag%20set%20into%20equivalent%20ES5.%0A%0A%2F%2F%20Match%20any%20symbol%20from%20U%2B1F4A9%20PILE%20OF%20POO%20to%20U%2B1F4AB%20DIZZY%20SYMBOL.%0Avar%20regex%20%3D%20%2F%5B%F0%9F%92%A9-%F0%9F%92%AB%5D%2Fu%3B%20%2F%2F%20Or%2C%20%60%2F%5Cu%7B1F4A9%7D-%5Cu%7B1F4AB%7D%2Fu%60.%0Aconsole.log%28%0A%20%20regex.test%28'%F0%9F%92%A8'%29%2C%20%2F%2F%20false%0A%20%20regex.test%28'%F0%9F%92%A9'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AA'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AB'%29%2C%20%2F%2F%20true%0A%20%20regex.test%28'%F0%9F%92%AC'%29%20%20%2F%2F%20false%0A%29%3B%0A%0A%2F%2F%20See%20https%3A%2F%2Fmathiasbynens.be%2Fnotes%2Fes6-unicode-regex%20for%20more%20examples%0A%2F%2F%20and%20info.%0A) let you try `u` regexps as well as other ES.next features.
 
 ## Example
 
-Consider a file named `example-es6.js` with the following contents:
+Consider a file named `example-es2015.js` with the following contents:
 
 ```js
 var string = 'foo💩bar';
@@ -32,7 +32,7 @@ console.log([
 Let’s transpile it:
 
 ```bash
-$ regexpu < example-es6.js > example-es5.js
+$ regexpu < example-es2015.js > example-es5.js
 ```
 
 `example-es5.js` can now be used in ES5 environments. Its contents are as follows:
@@ -101,12 +101,12 @@ This prevents the [Recast](https://github.com/benjamn/recast) and [Esprima](http
 
 ### `regexpu.transformTree(ast, options)` or its alias `regexpu.transform(ast, options)`
 
-This function accepts an abstract syntax tree representing some JavaScript code, and returns a transformed version of the tree in which any regular expression literals that use the ES6 `u` flag are rewritten in ES5.
+This function accepts an abstract syntax tree representing some JavaScript code, and returns a transformed version of the tree in which any regular expression literals that use the ES2015 `u` flag are rewritten in ES5.
 
 ```js
 const regexpu = require('regexpu');
 const recast = require('recast');
-const tree = recast.parse(code); // ES6 code
+const tree = recast.parse(code); // ES2015 code
 const transformedTree = regexpu.transform(tree);
 const result = recast.print(transformedTree);
 console.log(result.code); // transpiled ES5 code
@@ -125,17 +125,17 @@ This prevents the [Esprima](https://github.com/ariya/esprima) dependency from be
 
 ### `regexpu.transpileCode(code, options)`
 
-This function accepts a string representing some JavaScript code, and returns a transpiled version of this code tree in which any regular expression literals that use the ES6 `u` flag are rewritten in ES5.
+This function accepts a string representing some JavaScript code, and returns a transpiled version of this code tree in which any regular expression literals that use the ES2015 `u` flag are rewritten in ES5.
 
 ```js
-const es6 = 'console.log(/foo.bar/u.test("foo💩bar"));';
-const es5 = regexpu.transpileCode(es6);
+const es2015 = 'console.log(/foo.bar/u.test("foo💩bar"));';
+const es5 = regexpu.transpileCode(es2015);
 // → 'console.log(/foo(?:[\\0-\\t\\x0B\\f\\x0E-\\u2027\\u202A-\\uD7FF\\uDC00-\\uFFFF]|[\\uD800-\\uDBFF][\\uDC00-\\uDFFF]|[\\uD800-\\uDBFF])bar/.test("foo💩bar"));'
 ```
 
 The optional `options` object recognizes the following properties:
 
-* `sourceFileName`: a string representing the file name of the original ES6 source file.
+* `sourceFileName`: a string representing the file name of the original ES2015 source file.
 * `sourceMapName`: a string representing the desired file name of the source map.
 * `dotAllFlag`: a boolean indicating whether to enable [experimental support for the `s` (`dotAll`) flag](https://github.com/mathiasbynens/es-regexp-dotall-flag).
 * `unicodePropertyEscape`: a boolean indicating whether to enable [experimental support for Unicode property escapes](https://github.com/mathiasbynens/regexpu-core/blob/master/property-escapes.md).
@@ -144,8 +144,8 @@ The `sourceFileName` and `sourceMapName` properties must be provided if you want
 
 ```js
 const result = regexpu.transpileCode(code, {
-  'sourceFileName': 'es6.js',
-  'sourceMapName': 'es6.js.map',
+  'sourceFileName': 'es2015.js',
+  'sourceMapName': 'es2015.js.map',
 });
 console.log(result.code); // transpiled source code
 console.log(result.map); // source map
