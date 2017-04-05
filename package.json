@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "jsesc": "^2.2.0",
-    "recast": "^0.11.12",
+    "recast": "^0.12.3",
     "regexpu-core": "^4.0.2"
   },
   "devDependencies": {
