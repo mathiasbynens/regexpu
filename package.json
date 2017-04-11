@@ -56,18 +56,18 @@
     "cover": "istanbul cover --report html node_modules/.bin/_mocha tests/tests.js -- -u exports -R spec"
   },
   "dependencies": {
-    "jsesc": "^2.2.0",
-    "recast": "^0.11.12",
-    "regexpu-core": "^4.0.2"
+    "jsesc": "^2.4.0",
+    "recast": "^0.12.3",
+    "regexpu-core": "^4.0.5"
   },
   "devDependencies": {
-    "babili": "0.0.9",
-    "browserify": "^13.1.0",
-    "codecov": "^1.0.1",
-    "istanbul": "^0.4.0",
+    "babili": "0.0.12",
+    "browserify": "^14.3.0",
+    "codecov": "^2.1.0",
+    "istanbul": "^0.4.5",
     "jsesc": "^2.2.0",
-    "lodash": "^4.15.0",
-    "mocha": "^3.0.2",
+    "lodash": "^4.17.4",
+    "mocha": "^3.2.0",
     "regexpu-fixtures": "*"
   }
 }
