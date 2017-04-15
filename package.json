@@ -1,6 +1,6 @@
 {
   "name": "regexpu",
-  "version": "4.0.7",
+  "version": "4.0.8",
   "description": "A source code transpiler that enables the use of ES2015 Unicode regular expressions in ES5.",
   "homepage": "https://mths.be/regexpu",
   "main": "regexpu.js",
