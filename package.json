@@ -61,7 +61,7 @@
     "regexpu-core": "^4.0.11"
   },
   "devDependencies": {
-    "babili": "0.0.12",
+    "babili": "0.1.1",
     "browserify": "^14.3.0",
     "codecov": "^2.1.0",
     "istanbul": "^0.4.5",
