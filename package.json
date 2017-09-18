@@ -67,6 +67,6 @@
 		"istanbul": "^0.4.5",
 		"lodash": "^4.17.4",
 		"mocha": "^3.5.3",
-		"regexpu-fixtures": "*"
+		"regexpu-fixtures": "^2.1.2"
 	}
 }
