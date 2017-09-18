@@ -58,7 +58,7 @@
 	"dependencies": {
 		"jsesc": "^2.5.1",
 		"recast": "^0.12.6",
-		"regexpu-core": "^4.1.2"
+		"regexpu-core": "^4.1.3"
 	},
 	"devDependencies": {
 		"babili": "0.1.4",
@@ -66,7 +66,7 @@
 		"codecov": "^2.3.0",
 		"istanbul": "^0.4.5",
 		"lodash": "^4.17.4",
-		"mocha": "^3.5.0",
+		"mocha": "^3.5.3",
 		"regexpu-fixtures": "*"
 	}
 }
