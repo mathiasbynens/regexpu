@@ -58,7 +58,7 @@
 	"dependencies": {
 		"jsesc": "^2.5.2",
 		"recast": "^0.17.3",
-		"regexpu-core": "^4.5.1"
+		"regexpu-core": "^4.5.2"
 	},
 	"devDependencies": {
 		"babili": "0.1.4",
