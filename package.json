@@ -57,16 +57,16 @@
 	},
 	"dependencies": {
 		"jsesc": "^2.5.2",
-		"recast": "^0.17.3",
-		"regexpu-core": "^4.5.3"
+		"recast": "^0.18.1",
+		"regexpu-core": "^4.5.5"
 	},
 	"devDependencies": {
 		"babili": "0.1.4",
-		"browserify": "^16.2.3",
-		"codecov": "^3.2.0",
+		"browserify": "^16.5.0",
+		"codecov": "^3.5.0",
 		"istanbul": "^0.4.5",
-		"lodash": "^4.17.11",
-		"mocha": "^6.0.2",
+		"lodash": "^4.17.15",
+		"mocha": "^6.2.0",
 		"regexpu-fixtures": "^2.1.2"
 	}
 }
