@@ -113,7 +113,7 @@ describe('regexpu.transpileCode', function() {
 			regexpu.transpileCode('var x = /./s;', {
 				'dotAllFlag': true
 			}),
-			'var x = /[\\0-\\uFFFF]/;'
+			'var x = /[\\s\\S]/;'
 		);
 		assert.equal(
 			regexpu.transpileCode('var x = /./u;', {
