@@ -12,10 +12,10 @@ mkdir -p dist;
 echo 'Building browser-compatible version…';
 browserify $args --require ./regexpu.js:regexpu -o dist/regexpu-browser.js;
 
-echo 'Minifying…';
-babili --no-comments dist/regexpu-browser.js > dist/regexpu-browser.min.js;
+echo 'Transpiling and minifying…';
+babel dist/regexpu-browser.js -o dist/regexpu.min.js;
 
-echo 'Updating online demo…';
-rsync --verbose --archive --compress \
-	dist/regexpu-browser.min.js \
-	mothereff.in:httpdocs/regexpu.min.js;
+echo 'replacing use strict…';
+awk '!x{x=sub("\"use strict\";","")}7' dist/regexpu.min.js > final_tmp.js && mv final_tmp.js dist/regexpu.min.js
+
+echo 'done. minified file is in dist folder'

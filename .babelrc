@@ -1,4 +1,4 @@
 {
-  "presets": ["babili"],
+  "presets": ["babili", "env"],
   comments: false
 }

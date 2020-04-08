@@ -61,6 +61,8 @@
 		"regexpu-core": "^4.7.0"
 	},
 	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.7.0",
 		"babili": "0.1.4",
 		"browserify": "^16.5.0",
 		"codecov": "^3.6.5",
