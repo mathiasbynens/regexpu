@@ -18,4 +18,4 @@ babili --no-comments dist/regexpu-browser.js > dist/regexpu-browser.min.js;
 echo 'Updating online demo…';
 rsync --verbose --archive --compress \
 	dist/regexpu-browser.min.js \
-	mothereff.in:httpdocs/regexpu.min.js;
+	mothereff.in:httpdocs/regexpu.min.js || true;

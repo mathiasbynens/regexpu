@@ -1,4 +1,4 @@
-# regexpu [![Build status](https://travis-ci.org/mathiasbynens/regexpu.svg?branch=master)](https://travis-ci.org/mathiasbynens/regexpu) [![Code coverage status](https://img.shields.io/codecov/c/github/mathiasbynens/regexpu.svg)](https://codecov.io/gh/mathiasbynens/regexpu)
+# regexpu [![Build status](https://travis-ci.org/mathiasbynens/regexpu.svg?branch=main)](https://travis-ci.org/mathiasbynens/regexpu) [![Code coverage status](https://img.shields.io/codecov/c/github/mathiasbynens/regexpu.svg)](https://codecov.io/gh/mathiasbynens/regexpu) [![regexpu on npm](https://img.shields.io/npm/v/regexpu)](https://www.npmjs.com/package/regexpu)
 
 _regexpu_ is a source code transpiler that enables the use of ES2015 Unicode regular expressions in JavaScript-of-today (ES5). It rewrites regular expressions that make use of [the ES2015 `u` flag](https://mathiasbynens.be/notes/es6-unicode-regex) into equivalent ES5-compatible regular expressions.
 
@@ -165,6 +165,28 @@ If you’re looking for a general-purpose ES.next-to-ES5 transpiler with support
 * [Babel](https://github.com/babel/babel) v1.5.0+
 * [esnext](https://github.com/esnext/esnext) v0.12.0+
 * [Bublé](https://gitlab.com/Rich-Harris/buble) v0.12.0+
+
+## For maintainers
+
+### How to publish a new release
+
+1. On the `main` branch, bump the version number in `package.json`:
+
+    ```sh
+    npm version patch -m 'Release v%s'
+    ```
+
+    Instead of `patch`, use `minor` or `major` [as needed](https://semver.org/).
+
+    Note that this produces a Git commit + tag.
+
+1. Push the release commit and tag:
+
+    ```sh
+    git push && git push --tags
+    ```
+
+    Our CI then automatically publishes the new release to npm.
 
 ## Author
 
