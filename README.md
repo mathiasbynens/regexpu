@@ -1,6 +1,6 @@
 # regexpu [![Build status](https://travis-ci.org/mathiasbynens/regexpu.svg?branch=main)](https://travis-ci.org/mathiasbynens/regexpu) [![Code coverage status](https://img.shields.io/codecov/c/github/mathiasbynens/regexpu.svg)](https://codecov.io/gh/mathiasbynens/regexpu) [![regexpu on npm](https://img.shields.io/npm/v/regexpu)](https://www.npmjs.com/package/regexpu)
 
-_regexpu_ is a source code transpiler that enables the use of ES2015 Unicode regular expressions in JavaScript-of-today (ES5). It rewrites regular expressions that make use of [the ES2015 `u` flag](https://mathiasbynens.be/notes/es6-unicode-regex) into equivalent ES5-compatible regular expressions.
+_regexpu_ is a source code transpiler that enables the use of ES2015 (aka ES6) Unicode regular expressions in ES5. It rewrites regular expressions that make use of [the ES2015 `u` flag](https://mathiasbynens.be/notes/es6-unicode-regex) into equivalent ES5-compatible regular expressions.
 
 [Here’s an online demo.](https://mothereff.in/regexpu)
 
