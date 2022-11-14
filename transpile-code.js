@@ -15,9 +15,9 @@ module.exports = function(input, options) {
 		'sourceFileName': sourceFileName
 	});
 	const transformed = transform(tree, {
-		'dotAllFlag': enableDotAllFlag,
-		'unicodePropertyEscape': enableUnicodePropertyEscapes,
-		'useUnicodeFlag': useUnicodeFlag
+		'dotAllFlag': enableDotAllFlag ? 'transform' : false,
+		'unicodePropertyEscapes': enableUnicodePropertyEscapes ? 'transform' : false,
+		'unicodeFlag': useUnicodeFlag ? false : 'transform',
 	});
 	if (createSourceMap) {
 		// If a source map was requested, return an object with `code` and `map`

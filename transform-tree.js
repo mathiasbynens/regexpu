@@ -15,7 +15,7 @@ module.exports = function(node, rewritePatternOptions) {
 			}
 
 			const flags = node.regex.flags;
-			const useDotAll = rewritePatternOptions.dotAllFlag && flags.includes('s');
+			const useDotAll = rewritePatternOptions.dotAllFlag === 'transform' && flags.includes('s');
 			if (!flags.includes('u') && !useDotAll) {
 				return false;
 			}
@@ -26,7 +26,7 @@ module.exports = function(node, rewritePatternOptions) {
 				rewritePatternOptions
 			);
 			const filteredFlags = useDotAll ? flags.replace('s', '') : flags;
-			const newFlags = rewritePatternOptions.useUnicodeFlag ?
+			const newFlags = rewritePatternOptions.unicodeFlag === 'transform' ?
 				filteredFlags :
 				filteredFlags.replace('u', '');
 			const result = `/${ newPattern }/${ newFlags }`;
