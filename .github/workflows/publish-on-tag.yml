@@ -3,14 +3,22 @@ name: publish-on-tag
 on:
   push:
     tags:
-    - '*'
+      - '*'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Check out
+        uses: actions/checkout@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: '.nvmrc'
+          registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
         run: npm install
       - name: Build
@@ -18,9 +26,5 @@ jobs:
       - name: Test
         run: npm test
       - name: Publish
-        env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
-          npm config set registry 'https://wombat-dressing-room.appspot.com/'
-          npm config set '//wombat-dressing-room.appspot.com/:_authToken' '${NPM_TOKEN}'
-          npm publish
+          npm publish --provenance --access public
